@@ -1,34 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Funnel
 
-## Getting Started
+Funnel 기능을 사용할 곳에 useFunnel을 가져온 후
 
-First, run the development server:
+```
+const { Funnel, setStep } = useFunnel({ qs: funnelTitle });
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+<Funnel>
+    <Funnel.Step name="병원선택">
+        <병원선택 onNext={() => setStep({ step: "일정선택" })} />
+    </Funnel.Step>
+    <Funnel.Step name="일정선택">
+        <일정선택 onNext={() => setStep({ step: "정보확인" })} />
+    </Funnel.Step>
+    <Funnel.Step name="정보확인">
+        <정보확인 onNext={() => setStep({ step: "예약성공" })} />
+    </Funnel.Step>
+    <Funnel.Step name="예약성공">
+        <예약성공 />
+    </Funnel.Step>
+</Funnel>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+위 처럼 사용
+(useFunnel은 Funnel 컴포넌트와 step 이동 함수인 setStep을 리턴으로 한다.)
